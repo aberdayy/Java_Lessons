@@ -6,9 +6,10 @@ public class Main {
         // Data access layer -> Kontrol kisimlari -> arayuz
         // dal ve controller baglantilari genelikle interface ile olur bagimliligi azaltmak icin
 
-        ICustomerDal customerDal = new OracleCustomerDal();
-        customerDal.add();
 
+        CustomerManager customerManager = new CustomerManager(new MySqlCustomerDal());
+        customerManager.add();
 
     }
 }
+
