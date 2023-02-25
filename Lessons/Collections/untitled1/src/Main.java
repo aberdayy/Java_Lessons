@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,7 +40,7 @@ public class Main {
         }
 */
 //-------------- ARRAYLIST WITH CLASSES
-
+/*
         ArrayList<Customer> customers = new ArrayList<Customer>();
         customers.add(new Customer(1,"ataberk","erday"));
         customers.add(new Customer(2,"Mert","Kasap"));
@@ -61,6 +62,31 @@ public class Main {
             System.out.println(customer.name);
         }
 
+*/
+//-------------- HashMap => Dictionary
+        HashMap<String,String> sozluk = new HashMap<String, String>();
+        sozluk.put("book","kitap");
+        sozluk.put("table","masa");
+        sozluk.put("computer","bilgisayar");
+        sozluk.put("cellphone","telefon");
+
+        System.out.println(sozluk);
+
+        System.out.println(sozluk.get("table"));
+        System.out.println("\n");
+
+        for (String item : sozluk.keySet()){
+            System.out.println(item);
+        }
+
+        System.out.println("\n");
+        for (String item : sozluk.keySet()){
+            System.out.println("Eleman = " + item + " Deger = "+sozluk.get(item));
+        }
+        System.out.println("\n");
+
+        sozluk.remove("table");
+        System.out.println(sozluk.get("table"));
 
     }
 }
