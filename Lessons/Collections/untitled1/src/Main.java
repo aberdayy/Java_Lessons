@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Main {
     public static void main(String[] args) {
+        /*
         int[] sayilar = new int[]{1,2,3};
-
         sayilar = new int [4];
     //  System.out.println(sayilar[0]);
 
@@ -22,6 +24,20 @@ public class Main {
         for (Object i : sayilar2){
             System.out.println(i);
         }
+*/
+//--------------SAFETYPE ARRAYLIST
+        ArrayList<String> sehirler = new ArrayList<String>();
+        sehirler.add("Istanbul");
+        sehirler.add("Izmir");
+        sehirler.add("Ankara");
+        sehirler.add("Balikesir");
+        sehirler.add("Yalova");
+        Collections.sort(sehirler);
+
+        for (String s : sehirler){
+            System.out.println(s);
+        }
+
 
     }
 }
