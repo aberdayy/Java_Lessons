@@ -24,7 +24,7 @@ public class Main {
         for (Object i : sayilar2){
             System.out.println(i);
         }
-*/
+
 //--------------SAFETYPE ARRAYLIST
         ArrayList<String> sehirler = new ArrayList<String>();
         sehirler.add("Istanbul");
@@ -36,6 +36,29 @@ public class Main {
 
         for (String s : sehirler){
             System.out.println(s);
+        }
+*/
+//-------------- ARRAYLIST WITH CLASSES
+
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+        customers.add(new Customer(1,"ataberk","erday"));
+        customers.add(new Customer(2,"Mert","Kasap"));
+        customers.add(new Customer(3,"Onur","Karakaya"));
+        customers.add(new Customer(4,"Cuneyt","Kandirmaz"));
+
+    //  customers.remove(new Customer(1,"ataberk","erday")); //Referans numaralari ile calisildigi icin bu veri silinemez
+        Customer ata = new Customer(5,"Ata","ERDAY");
+        customers.add(ata);
+        for(Customer customer : customers){
+            System.out.println(customer.name);
+        }
+
+        System.out.println("-----------");
+        //Silinen referans numarasi ayni oldugu icin yani newleme islemi yapmadigimiz icin bu veriyi kolaylikla silebiliriz.
+
+        customers.remove(ata);
+        for(Customer customer : customers){
+            System.out.println(customer.name);
         }
 
 
