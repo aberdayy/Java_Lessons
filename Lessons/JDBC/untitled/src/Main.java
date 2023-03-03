@@ -9,16 +9,11 @@ public class Main {
         ResultSet resultSet;
         try {
             connection = helper.getConnection();
-            String sql = "insert into city(Name,CountryCode,District,Population) values (?,?,?,?)";
+            String sql = "update city set Population = 00, district ='karadenizz' where id=?";
             statement= connection.prepareStatement(sql);
-
-            statement.setString(1,"Duzce 2");
-            statement.setString(2,"TUR");
-            statement.setString(3,"Marmara");
-            statement.setInt(4,99920);
-
+            statement.setInt(1,4081);
             int result = statement.executeUpdate();
-            System.out.println("Kayit eklendi ");
+            System.out.println("Kayit guncellendi ");
 
         } catch (SQLException exception) {
             helper.showErrorMessage(exception);
@@ -75,6 +70,35 @@ public class Main {
                 connection.close();
             }
 
+
+        }
+        public static void insertToDbAuto()throws SQLException{
+            Connection connection = null;
+            DbHelper helper = new DbHelper();
+            PreparedStatement statement = null;
+            ResultSet resultSet;
+            try {
+                connection = helper.getConnection();
+                String sql = "insert into city(Name,CountryCode,District,Population) values (?,?,?,?)";
+                statement= connection.prepareStatement(sql);
+
+                statement.setString(1,"Duzce 2");
+                statement.setString(2,"TUR");
+                statement.setString(3,"Marmara");
+                statement.setInt(4,99920);
+
+                int result = statement.executeUpdate();
+                System.out.println("Kayit eklendi ");
+
+            } catch (SQLException exception) {
+                helper.showErrorMessage(exception);
+            } finally {
+                statement.close();
+                connection.close();
+            }
+
+        }
+        public static void updateFromDb() throws SQLException{
 
         }
 }
