@@ -9,11 +9,11 @@ public class Main {
         ResultSet resultSet;
         try {
             connection = helper.getConnection();
-            String sql = "update city set Population = 00, district ='karadenizz' where id=?";
+            String sql = "delete from city where id=?";
             statement= connection.prepareStatement(sql);
             statement.setInt(1,4081);
             int result = statement.executeUpdate();
-            System.out.println("Kayit guncellendi ");
+            System.out.println("Kayit silindi ");
 
         } catch (SQLException exception) {
             helper.showErrorMessage(exception);
@@ -99,6 +99,25 @@ public class Main {
 
         }
         public static void updateFromDb() throws SQLException{
+            Connection connection = null;
+            DbHelper helper = new DbHelper();
+            PreparedStatement statement = null;
+            ResultSet resultSet;
+            try {
+                connection = helper.getConnection();
+                String sql = "update city set Population = 00, district ='karadenizz' where id=?";
+                statement= connection.prepareStatement(sql);
+                statement.setInt(1,4081);
+                int result = statement.executeUpdate();
+                System.out.println("Kayit guncellendi ");
+
+            } catch (SQLException exception) {
+                helper.showErrorMessage(exception);
+            } finally {
+                statement.close();
+                connection.close();
+            }
+
 
         }
 }
