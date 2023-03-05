@@ -1,32 +1,37 @@
 import java.sql.*;
 import java.util.ArrayList;
+import java.sql.Connection;
+
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        Connection connection = null;
-        DbHelper helper = new DbHelper();
-        PreparedStatement statement = null;
-        ResultSet resultSet;
-        try {
-            connection = helper.getConnection();
-            String sql = "delete from city where id=?";
-            statement= connection.prepareStatement(sql);
-            statement.setInt(1,4081);
-            int result = statement.executeUpdate();
-            System.out.println("Kayit silindi ");
-
-        } catch (SQLException exception) {
-            helper.showErrorMessage(exception);
-        } finally {
-            statement.close();
-            connection.close();
-        }
-
-
+      selectFromDb();
     }
-        public static void selectFromDb() throws SQLException {
+        public static void deleteFromDb()throws SQLException{
             Connection connection = null;
             DbHelper helper = new DbHelper();
+            PreparedStatement statement = null;
+            ResultSet resultSet;
+            try {
+                connection = helper.getConnection();
+                String sql = "delete from city where id=?";
+                statement= connection.prepareStatement(sql);
+                statement.setInt(1,4081);
+                int result = statement.executeUpdate();
+                System.out.println("Kayit silindi ");
+
+            } catch (SQLException exception) {
+                helper.showErrorMessage(exception);
+            } finally {
+                statement.close();
+                connection.close();
+            }
+
+
+        }
+        public static void selectFromDb() throws SQLException {
+            Connection connection = null;
+
             Statement statement;
             ResultSet resultSet;
             try {
