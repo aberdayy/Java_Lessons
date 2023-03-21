@@ -1,9 +1,7 @@
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.sql.*;
+import java.util.*;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,9 +9,28 @@ import java.util.ArrayList;
  */
 
 public class NewJFrame extends javax.swing.JFrame {
-    public NewJFrame() {
-        initComponents();
-    
+    DefaultTableModel model;
+    public NewJFrame() throws SQLException {
+        /*
+        try {
+            initComponents();
+            model = (DefaultTableModel)tblCities.getModel();
+            ArrayList<City> cities = getCities();            
+            for(City city : cities){
+                Object[] row = {
+                    city.getId(),
+                    city.getName(),
+                    city.getCountryCode(),
+                    city.getDistrict(),
+                    city.getPopulation()};
+            model.addRow(row);
+            }
+        } catch (SQLException ex) {
+            
+        }
+*/
+        int num = getCities();
+        System.out.println(num);
     }
     
     @SuppressWarnings("unchecked")
@@ -76,44 +93,56 @@ public class NewJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public ArrayList<City> getCities () throws SQLException{
+    public int getCities() throws SQLException{
         Connection conn = null;
         DbHelper helper = new DbHelper();
-        Statement statement = null;
+        Statement statement;
         ResultSet result;
         ArrayList<City> cities = null;
-        
+        int num = 0;
         try{
             conn = helper.getConnection();
             statement = conn.createStatement();
-            result = statement.executeQuery("Select * from City");
-            cities = new ArrayList<City>();
-            while(result.next()){
-                cities.add(
+            result = statement.executeQuery("select * from city");
+            if(result != null ){
+           
+                
+                
+                while(result.next()){
+                    cities.add(
                         new City(
-                                result.getInt("id"),
-                                result.getString("name"),
-                                result.getString("countryCode"),
-                                result.getString("district"),
-                                result.getInt("population")
-                        ));
+                                result.getInt("Id"),
+                                result.getString("Name"),
+                                result.getString("CountryCode"),
+                                result.getString("District"),
+                                result.getInt("Population")
+                        )
+                    );
+                }
+            
+            num=1;
+            }else{
+                num=0;
             }
             
         }catch(SQLException exception){
           helper.showErrorMessage(exception); 
-        }finally{
-            statement.close();
-            conn.close();
         }
-        return cities;
+        if(num != 0){
+            return num;
+        }else{
+            return num; 
+        }
     }
     
     public static void main(String args[]) {
         
         
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new NewJFrame().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

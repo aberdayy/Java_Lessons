@@ -1,56 +1,56 @@
 public class City {
     
-private int id;
-private String name;
-private String countryCode;
-private String district;
-private int population;
+private int Id;
+private String Name;
+private String CountryCode;
+private String District;
+private int Population;
 
-    public City(int id, String name, String countryCode, String district, int population) {
-        this.id = id;
-        this.name = name;
-        this.countryCode = countryCode;
-        this.district = district;
-        this.population = population;
+    public City(int Id, String Name, String CountryCode, String District, int Population) {
+        this.Id = Id;
+        this.Name = Name;
+        this.CountryCode = CountryCode;
+        this.District = District;
+        this.Population = Population;
     }
     
     public int getId() {
-        return id;
+        return Id;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
     
     public String getName() {
-        return name;
+        return Name;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     
     public String getCountryCode() {
-        return countryCode;
+        return CountryCode;
     }
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCountryCode(String CountryCode) {
+        this.CountryCode = CountryCode;
     }
 
     
     public String getDistrict() {
-        return district;
+        return District;
     }
-    public void setDistrict(String district) {
-        this.district = district;
+    public void setDistrict(String District) {
+        this.District = District;
     }
 
     
     public int getPopulation() {
-        return population;
+        return Population;
     }
-    public void setPopulation(int population) {
-        this.population = population;
+    public void setPopulation(int Population) {
+        this.Population = Population;
     }
        
 
