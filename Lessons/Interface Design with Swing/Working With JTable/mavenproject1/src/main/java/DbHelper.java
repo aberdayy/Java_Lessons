@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class DbHelper {
     private String username = "root";
     private String pass = "admin";
-    private String dbUrl = "jdbc:mysql://localhost:3306/world?";
+    private String dbUrl = "jdbc:mysql://localhost:3306/world";
 
     public Connection getConnection() throws SQLException{
         return DriverManager.getConnection(dbUrl,username,pass);

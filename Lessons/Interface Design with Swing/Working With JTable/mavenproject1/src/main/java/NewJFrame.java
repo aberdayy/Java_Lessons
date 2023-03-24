@@ -5,15 +5,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
 public class NewJFrame extends javax.swing.JFrame {
     DefaultTableModel model;
     public NewJFrame() throws SQLException {
-        /*
+        DbHelper helper = new DbHelper();
+
         try {
             initComponents();
             model = (DefaultTableModel)tblCities.getModel();
@@ -28,11 +24,10 @@ public class NewJFrame extends javax.swing.JFrame {
             model.addRow(row);
             }
         } catch (SQLException ex) {
-            
+            helper.showErrorMessage(ex);
         }
-*/
-        int num = getCities();
-        System.out.println(num);
+
+
     }
     
     @SuppressWarnings("unchecked")
@@ -95,21 +90,17 @@ public class NewJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public int getCities() throws SQLException{
+    public static ArrayList<City> getCities() throws SQLException{
         Connection conn = null;
         DbHelper helper = new DbHelper();
         Statement statement;
         ResultSet result;
-        ArrayList<City> cities = null;
-        int num = 0;
+        ArrayList<City> cities = new ArrayList<>();
         try{
             conn = helper.getConnection();
             statement = conn.createStatement();
             result = statement.executeQuery("select * from city");
-            if(result != null ){
-           
-                
-                
+
                 while(result.next()){
                     cities.add(
                         new City(
@@ -121,20 +112,10 @@ public class NewJFrame extends javax.swing.JFrame {
                         )
                     );
                 }
-            
-            num=1;
-            }else{
-                num=0;
-            }
-            
         }catch(SQLException exception){
           helper.showErrorMessage(exception); 
         }
-        if(num != 0){
-            return num;
-        }else{
-            return num; 
-        }
+        return cities;
     }
     
         public static void main(String args[]) {
