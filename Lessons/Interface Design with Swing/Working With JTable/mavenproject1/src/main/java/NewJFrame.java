@@ -10,11 +10,15 @@ import javax.swing.table.TableRowSorter;
 public class NewJFrame extends javax.swing.JFrame {
     DefaultTableModel model;
     public NewJFrame() throws SQLException {
-        DbHelper helper = new DbHelper();
-
+        initComponents();
+        populateTable();
+    }
+    
+    public void populateTable(){
+        
+        model = (DefaultTableModel)tblCities.getModel();
+       model.setRowCount(0);
         try {
-            initComponents();
-            model = (DefaultTableModel)tblCities.getModel();
             ArrayList<City> cities = getCities();            
             for(City city : cities){
                 Object[] row = {
@@ -26,11 +30,10 @@ public class NewJFrame extends javax.swing.JFrame {
             model.addRow(row);
             }
         } catch (SQLException ex) {
-            helper.showErrorMessage(ex);
+
         }
-
-
     }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,15 +43,15 @@ public class NewJFrame extends javax.swing.JFrame {
         tblCities = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         lblSearch = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        lblName = new javax.swing.JLabel();
+        lblCountryCode = new javax.swing.JLabel();
+        lblDist = new javax.swing.JLabel();
+        lblPop = new javax.swing.JLabel();
+        tbxName = new javax.swing.JTextField();
+        tbxCountryCode = new javax.swing.JTextField();
+        tbxDist = new javax.swing.JTextField();
+        tbxPop = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,19 +101,24 @@ public class NewJFrame extends javax.swing.JFrame {
 
         lblSearch.setText("Arama ifadesi");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Name : ");
+        lblName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblName.setText("Name : ");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Country Code : ");
+        lblCountryCode.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblCountryCode.setText("Country Code : ");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("District :");
+        lblDist.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDist.setText("District :");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Population :");
+        lblPop.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPop.setText("Population :");
 
-        jButton1.setText("Yeni Sehir Ekle");
+        btnAdd.setText("Yeni Sehir Ekle");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,17 +136,17 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(lblName)
+                            .addComponent(lblCountryCode)
+                            .addComponent(lblDist)
+                            .addComponent(lblPop))
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(tbxPop)
+                            .addComponent(tbxDist)
+                            .addComponent(tbxCountryCode)
+                            .addComponent(tbxName, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(233, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -153,22 +161,22 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblName)
+                            .addComponent(tbxName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCountryCode)
+                            .addComponent(tbxCountryCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblDist)
+                            .addComponent(tbxDist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblPop)
+                            .addComponent(tbxPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
@@ -188,6 +196,41 @@ public class NewJFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        Connection conn = null;
+        DbHelper helper = new DbHelper();
+        PreparedStatement statement = null;
+        ResultSet result;
+        try {
+            conn = helper.getConnection();
+            String sql = "insert into city (Name,CountryCode,District,Population) values(?,?,?,?)";
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, tbxName.getText());
+            statement.setString(2, tbxCountryCode.getText());
+            statement.setString(3,tbxDist.getText());
+            statement.setInt(4,Integer.valueOf(tbxPop.getText()));
+            int myResult;
+            myResult = statement.executeUpdate();
+            populateTable();
+        } catch (SQLException e) {
+            helper.showErrorMessage(e);
+        }finally{
+            try {
+                statement.close();
+                conn.close();
+            } catch (SQLException ex) {
+                helper.showErrorMessage(ex);
+            }
+        }
+
+
+
+
+
+
+    }//GEN-LAST:event_btnAddActionPerformed
     public static ArrayList<City> getCities() throws SQLException{
         Connection conn = null;
         DbHelper helper = new DbHelper();
@@ -246,24 +289,23 @@ public class NewJFrame extends javax.swing.JFrame {
                 try {
                     new NewJFrame().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblCountryCode;
+    private javax.swing.JLabel lblDist;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPop;
     private javax.swing.JLabel lblSearch;
     private javax.swing.JTable tblCities;
+    private javax.swing.JTextField tbxCountryCode;
+    private javax.swing.JTextField tbxDist;
+    private javax.swing.JTextField tbxName;
+    private javax.swing.JTextField tbxPop;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
